@@ -1,0 +1,18 @@
+Python 3.6.2 (v3.6.2:5fd33b5, Jul  8 2017, 04:57:36) [MSC v.1900 64 bit (AMD64)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> 
+ RESTART: D:\Downloads\From-browser\linux-170621-PythonWork\PythonWork\translate\translate-test.py 
+输入需要翻译的内容(q to Exit):你好
+                                                                                                                                                                                          {"type":"ZH_CN2EN","errorCode":0,"elapsedTime":1,"translateResult":[[{"src":"你好","tgt":"How are you"}]],"smartResult":{"type":1,"entries":["","hello","hi"]}}
+
+----
+{'type': 'ZH_CN2EN', 'errorCode': 0, 'elapsedTime': 1, 'translateResult': [[{'src': '你好', 'tgt': 'How are you'}]], 'smartResult': {'type': 1, 'entries': ['', 'hello', 'hi']}}
+How are you
+hello
+hi
+输入需要翻译的内容(q to Exit):q
+>>> print(type(html))
+<class 'str'>
+>>> print(type(msg))
+<class 'dict'>
+>>> 

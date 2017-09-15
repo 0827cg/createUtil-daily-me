@@ -1,0 +1,3 @@
+定时切割日志
+
+cut nginx log
