@@ -137,6 +137,7 @@ class EmailUtil:
         
         message = MIMEText(strContent, "plain", "utf-8")
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
+        message['To'] = Header('monitor.admin', 'utf-8')
         message['Subject'] = Header(strSubject, 'utf-8')
 
         try:
@@ -168,6 +169,7 @@ class EmailUtil:
 
         message = MIMEMultipart()
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
+        message['To'] = Header('monitor.admin', 'utf-8')
         message['Subject'] = Header(strSubject, 'utf-8')
 
         message.attach(MIMEText(strContent, 'plain', 'utf-8'))

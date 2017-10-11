@@ -132,11 +132,13 @@ class EmailUtil:
         #listToAddr: 接受邮件的地址，为list集合
         #strSubject: 邮件主题
         #strContent: 邮件内容字符串类型
+        #message对象中的三个key('From','To','Subject')最好都要有，不然容易被识别为垃圾邮件
         
         mail_port = '465'
         
         message = MIMEText(strContent, "plain", "utf-8")
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
+        message['To'] = Header('monitor.admin', 'utf-8')
         message['Subject'] = Header(strSubject, 'utf-8')
 
         try:
@@ -168,6 +170,7 @@ class EmailUtil:
 
         message = MIMEMultipart()
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
+        message['To'] = Header('monitor.admin', 'utf-8')
         message['Subject'] = Header(strSubject, 'utf-8')
 
         message.attach(MIMEText(strContent, 'plain', 'utf-8'))
