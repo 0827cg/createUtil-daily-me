@@ -1,4 +1,5 @@
-import smtplib
+import sys
+from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
@@ -91,35 +92,37 @@ class EmailUtil:
     def sendEmailByString(self, strSmtpServer, strSendAddr, strPasswd,
                           listToAddr, strSubject, strContent):
 
-        mail_port = '465'
+        #mail_port = '465'
         
         message = MIMEText(strContent, "plain", "utf-8")
+        message['Subject'] = Header(strSubject, 'utf-8')
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
         message['To'] = Header('monitor.admin', 'utf-8')
-        message['Subject'] = Header(strSubject, 'utf-8')
 
         try:
-            smtpObj = smtplib.SMTP_SSL()
+            smtpObj = SMTP_SSL(strSmtpServer)
             #smtpObj.set_debuglevel(1)
-            smtpObj.connect(strSmtpServer, mail_port)
+            smtpObj.ehlo(strSmtpServer)
             smtpObj.login(strSendAddr, strPasswd)
             if(len(listToAddr) > 0):
                 smtpObj.sendmail(strSendAddr, listToAddr, message.as_string())
+                smtpObj.quit()
             else:
                 self.fileUtilObj.writerContent("接收邮件地址为空", 'runErr')
         except:
+            print(sys.exc_info()[0])
             self.fileUtilObj.writerContent("邮件发送失败", 'runErr')
 
 
     def sendEmailByStringAndFile(self, strSmtpServer, strSendAddr, strPasswd,
                           listToAddr, strSubject, strContent, strErrFilePath):
         
-        mail_port = '465'
+        #mail_port = '465'
 
         message = MIMEMultipart()
+        message['Subject'] = Header(strSubject, 'utf-8')
         message['From'] = Header('monitor<%s>' % strSendAddr, 'utf-8')
         message['To'] = Header('monitor.admin', 'utf-8')
-        message['Subject'] = Header(strSubject, 'utf-8')
 
         message.attach(MIMEText(strContent, 'plain', 'utf-8'))
 
@@ -129,15 +132,17 @@ class EmailUtil:
         message.attach(annexFile)
 
         try:
-            smtpObj = smtplib.SMTP_SSL()
+            smtpObj = SMTP_SSL(strSmtpServer)
             #smtpObj.set_debuglevel(1)
-            smtpObj.connect(strSmtpServer, mail_port)
+            smtpObj.ehlo(strSmtpServer)
             smtpObj.login(strSendAddr, strPasswd)
             if(len(listToAddr) > 0):
                 smtpObj.sendmail(strSendAddr, addrItem, message.as_string())
+                smtpObj.quit()
             else:
                 self.fileUtilObj.writerContent("接受邮件地址为空", 'runErr')
         except:
+            print(sys.exc_info()[0])
             self.fileUtilObj.writerContent("附件邮件发送失败", 'runErr')
         
         
