@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 from monitorbin.operate import Operate
 
 #author: cg错过

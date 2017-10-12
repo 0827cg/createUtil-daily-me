@@ -1,2 +1,4 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 #/monitorbin/util/
-#coding: utf-8

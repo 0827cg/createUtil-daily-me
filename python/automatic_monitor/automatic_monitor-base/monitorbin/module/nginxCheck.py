@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 from monitorbin.util.process import ProcessCL
 
 #author: cg错过

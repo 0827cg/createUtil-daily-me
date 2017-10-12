@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 import sys
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText

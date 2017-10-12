@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 from monitorbin.util.fileUtil import FileUtil
 from monitorbin.module.tomcatCheck import TomcatOperate
 from monitorbin.module.nginxCheck import NginxOperate
